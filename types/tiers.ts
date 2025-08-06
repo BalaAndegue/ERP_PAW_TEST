@@ -1,7 +1,19 @@
+
+// types/tiers.ts
+export type TierType = "client" | "supplier" | "prospect" | "commercial";
+
+export type ProspectSource = "site_web" | "reseau_social" | "salon" | "recommandation";
+export type PotentialLevel = "faible" | "moyen" | "eleve" | "strategique";
+
+// Types pour les commerciaux
+export type CommercialType = "interne" | "externe" | "independant";
+export type ZoneCouverture = "nord" | "sud" | "est" | "ouest" | "international";
+export type Specialisation = "b2b" | "b2c" | "secteur_public" | "grands_comptes";
+
 export interface Tier {
   id: number;
   name: string;
-  type: 'client' | 'fournisseur' | 'partenaire' | 'prospect'| 'Commerciaux'|'Contacts';
+  type: "client" | "fournisseur" | "prospect" | "commerciaux";
   email: string;
   phone: string;
   status: 'actif' | 'inactif' | 'suspendu';

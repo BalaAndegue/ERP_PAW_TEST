@@ -51,31 +51,35 @@ const getBadgeVariant = (type: string) => {
       return "default";
   }
 };
-
 export function RecentActivity() {
   return (
-    <Card>
+    <Card className="mx-auto max-w-full">
       <CardHeader>
-        <CardTitle>Activité Récente</CardTitle>
+        <CardTitle className="text-lg sm:text-xl">Activité Récente</CardTitle>
       </CardHeader>
       <CardContent>
         <div className="space-y-4">
           {activities.map((activity) => (
-            <div key={activity.id} className="flex items-center gap-3">
-              <Avatar className="h-8 w-8">
+            <div key={activity.id} className="flex items-start gap-3 sm:items-center">
+              <Avatar className="h-7 w-7 sm:h-8 sm:w-8">
                 <AvatarImage src={`https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=32&h=32&dpr=2`} />
-                <AvatarFallback>
+                <AvatarFallback className="text-xs">
                   {activity.user.split(' ').map(n => n[0]).join('')}
                 </AvatarFallback>
               </Avatar>
-              <div className="flex-1 min-w-0">
-                <div className="text-sm">
+              
+              <div className="flex-1 min-w-0 overflow-hidden">
+                <div className="text-sm truncate">
                   <span className="font-medium">{activity.user}</span> {activity.action}{' '}
                   <span className="font-medium">{activity.target}</span>
                 </div>
                 <div className="text-xs text-muted-foreground">{activity.time}</div>
               </div>
-              <Badge variant={getBadgeVariant(activity.type)}>
+              
+              <Badge 
+                variant={getBadgeVariant(activity.type)} 
+                className="hidden sm:inline-flex whitespace-nowrap"
+              >
                 {activity.type}
               </Badge>
             </div>
