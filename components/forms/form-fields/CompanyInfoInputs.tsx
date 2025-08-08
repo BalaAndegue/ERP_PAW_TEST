@@ -2,8 +2,15 @@
 'use client';
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Select } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 import { Textarea } from "@/components/ui/textarea";
+import { useForm } from "react-hook-form";
 
 type CompanyInfoInputsProps = {
   register: any;
@@ -12,6 +19,8 @@ type CompanyInfoInputsProps = {
 };
 
 export function CompanyInfoInputs({ register, errors, control }: CompanyInfoInputsProps) {
+
+  const { watch, setValue } = useForm();
   return (
     <div className="space-y-6">
       <h3 className="text-lg font-medium">Informations de l'entreprise</h3>
@@ -62,30 +71,38 @@ export function CompanyInfoInputs({ register, errors, control }: CompanyInfoInpu
         <div className="space-y-2">
           <Label htmlFor="secteurActivite">Secteur d'activité</Label>
           <Select
-            id="secteurActivite"
-            options={[
-              { value: "it", label: "Technologie" },
-              { value: "finance", label: "Finance" },
-              { value: "sante", label: "Santé" },
-              { value: "industrie", label: "Industrie" },
-              { value: "commerce", label: "Commerce" },
-            ]}
-            {...register("secteurActivite")}
-          />
+            onValueChange={(value) => setValue("secteurActivite", value)}
+            defaultValue=""
+          >
+            <SelectTrigger>
+              <SelectValue placeholder="Sélectionner un secteur" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="it">Technologie</SelectItem>
+              <SelectItem value="finance">Finance</SelectItem>
+              <SelectItem value="sante">Santé</SelectItem>
+              <SelectItem value="industrie">Industrie</SelectItem>
+              <SelectItem value="commerce">Commerce</SelectItem>
+            </SelectContent>
+          </Select>
         </div>
 
         <div className="space-y-2">
           <Label htmlFor="tailleEntreprise">Taille d'entreprise</Label>
           <Select
-            id="tailleEntreprise"
-            options={[
-              { value: "micro", label: "Micro-entreprise" },
-              { value: "pme", label: "PME" },
-              { value: "eti", label: "ETI" },
-              { value: "ge", label: "Grande entreprise" },
-            ]}
-            {...register("tailleEntreprise")}
-          />
+            value={watch("tailleEntreprise")}
+            onValueChange={(value) => setValue("tailleEntreprise", value)}
+          >
+            <SelectTrigger>
+              <SelectValue placeholder="Sélectionner une taille" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="micro">Micro-entreprise</SelectItem>
+              <SelectItem value="pme">PME</SelectItem>
+              <SelectItem value="eti">ETI</SelectItem>
+              <SelectItem value="ge">Grande entreprise</SelectItem>
+            </SelectContent>
+          </Select>
         </div>
 
         <div className="space-y-2">

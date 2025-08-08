@@ -1,7 +1,13 @@
 
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Select } from '@/components/ui/select';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 import { TierBaseForm } from './TiersBaseForm';
 import { useToast } from '@/hooks/use-toast';
 import { z } from 'zod';
@@ -19,7 +25,7 @@ export function ClientForm({ onSuccess }: { onSuccess?: () => void }) {
   const { toast } = useToast();
   const api = useTiersApi();
 
-  const { register, handleSubmit, formState: { errors } } = useForm({
+  const { register, handleSubmit,setValue, formState: { errors } } = useForm({
     defaultValues: {
       segment: "",
       plafondCredit: "",
@@ -40,19 +46,29 @@ export function ClientForm({ onSuccess }: { onSuccess?: () => void }) {
     }
   };
 
+  
+
   return (
     <TierBaseForm onSubmit={handleSubmit(onFormSubmit)} onSuccess={onSuccess}>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="space-y-2">
           <Label htmlFor="segment">Segment client</Label>
-          <Select {...register("segment")}>
-            <option value="">Sélectionner un segment</option>
-            <option value="particulier">Particulier</option>
-            <option value="entreprise">Entreprise</option>
-            <option value="revendeur">Revendeur</option>
+          <Select 
+          value='{watch("segment")}'
+          onValueChange={(value) => setValue("segment", value)}
+          {...register("segment")}
+          >
+            <SelectTrigger>
+              <SelectValue placeholder="Sélectionner un segment" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="particulier">Particulier</SelectItem>
+              <SelectItem value="entreprise">Entreprise</SelectItem>
+              <SelectItem value="revendeur">Revendeur</SelectItem>
+            </SelectContent>
           </Select>
           {errors.segment && <span className="text-sm text-red-500">{errors.segment.message}</span>}
-        </div>
+      </div>
 
         <div className="space-y-2">
           <Label htmlFor="plafondCredit">Plafond de crédit</Label>
@@ -65,12 +81,21 @@ export function ClientForm({ onSuccess }: { onSuccess?: () => void }) {
 
         <div className="space-y-2">
           <Label htmlFor="canalAquisition">Canal d'acquisition</Label>
-          <Select {...register("canalAquisition")}>
-            <option value="">Sélectionner un canal</option>
-            <option value="web">Site web</option>
-            <option value="reseau">Réseau social</option>
-            <option value="recommandation">Recommandation</option>
+          <Select 
+          value='{watch("canalAquisition")}'
+          onValueChange={(value) => setValue("canalAquisition", value)}
+          {...register("canalAquisition")}
+          >
+            <SelectTrigger>
+              <SelectValue placeholder="Sélectionner un canal" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="web">Web</SelectItem>
+              <SelectItem value="reseau">Réseau social</SelectItem>
+              <SelectItem value="recommandation">Recommandation</SelectItem>
+            </SelectContent>
           </Select>
+          {errors.canalAquisition && <span className="text-sm text-red-500">{errors.canalAquisition.message}</span>}
         </div>
       </div>
     </TierBaseForm>
