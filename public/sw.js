@@ -1,4 +1,4 @@
-const CACHE_NAME = 'yowyob-erp-v1';
+/*const CACHE_NAME = 'yowyob-erp-v1';
 const urlsToCache = [
   '/',
   '/dashboard',
@@ -38,4 +38,4 @@ self.addEventListener('activate', (event) => {
       );
     })
   );
-});
+});*/

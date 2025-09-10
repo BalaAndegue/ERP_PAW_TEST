@@ -30,7 +30,7 @@ const navigation = [
   { name: "Paiements", href: "/payments", icon: CreditCard },
   { name: "Finances", href: "/finances", icon: Wallet },
   { name: "Rapports", href: "/reports", icon: PieChart },
-  { name: "Utilisateurs", href: "/users", icon: Users },
+  { name: "Membres", href: "/users", icon: Users },
   { name: "Paramètres", href: "/settings", icon: Settings },
 ];
 

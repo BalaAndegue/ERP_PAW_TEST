@@ -2,6 +2,8 @@
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select } from "@/components/ui/select";
+import { SelectContent, SelectItem, SelectTrigger, SelectValue } from "@radix-ui/react-select";
+import { useForm } from 'react-hook-form';
 
 type ContactInputsProps = {
   register: any;
@@ -9,6 +11,17 @@ type ContactInputsProps = {
 };
 
 export function ContactInputs({ register, errors }: ContactInputsProps) {
+
+
+ const {  handleSubmit,setValue,  } = useForm({
+    defaultValues: {
+      segment: "",
+      plafondCredit: "",
+      canalAquisition: "",
+    }
+  });
+
+
   return (
     <div className="space-y-6">
       <h3 className="text-lg font-medium">Coordonnées</h3>
@@ -32,7 +45,7 @@ export function ContactInputs({ register, errors }: ContactInputsProps) {
           <Input
             id="phoneNumber"
             {...register("phoneNumber")}
-            placeholder="+33 1 23 45 67 89"
+            placeholder="+237 656 616 751"
           />
         </div>
       </div>
@@ -60,6 +73,24 @@ export function ContactInputs({ register, errors }: ContactInputsProps) {
             {...register("canalPrefere")}
           />
         </div>
+        <div className="space-y-2">
+          <Label htmlFor="canalprefere">Canal Prefere</Label>
+          <Select 
+          value='{watch("segment")}'
+          onValueChange={(value) => setValue("segment", value)}
+          {...register("segment")}
+          >
+            <SelectTrigger>
+              <SelectValue placeholder="Sélectionner un segment" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="particulier">Particulier</SelectItem>
+              <SelectItem value="entreprise">Entreprise</SelectItem>
+              <SelectItem value="revendeur">Revendeur</SelectItem>
+            </SelectContent>
+          </Select>
+          {errors.segment && <span className="text-sm text-red-500">{errors.segment.message}</span>}
+      </div>
       </div>
     </div>
   );

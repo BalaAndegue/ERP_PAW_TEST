@@ -92,6 +92,50 @@ const initialTiers: Tier[] = [
     industry: "Technologie",
     avatar: "https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&w=32&h=32&dpr=2",
   },
+
+
+  {
+    id: 3,
+    name: "DATAAFRIQUEHUB Corporation",
+    type: "commercial",
+    email: "contacts@acme.com",
+    phone: "+237 6 53 45 67 89",
+    address: "123 Rue des Entrepreneurs",
+    city: "Douala",
+    country: "Cameroun",
+    postalCode: "00237",
+    status: "actif",
+    lastContact: "2024-01-15",
+    revenue: "XFA 125,000",
+    notes: "Client important depuis 2018. Paiements toujours à temps.",
+    paymentTerms: "30 jours",
+    contactPerson: "Jean Dupont",
+    taxNumber: "TAX123456",
+    registrationNumber: "RC789012",
+    industry: "Fabrication",
+    avatar: "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=32&h=32&dpr=2",
+  },
+  {
+    id: 4,
+    name: "INTech SARL",
+    type: "prospect",
+    email: "infos@techsolutions.fr",
+    phone: "+237 6 98 76 54 32",
+    address: "456 Avenue des Technologies",
+    city: "Yaoundé",
+    country: "Cameroun",
+    postalCode: "00237",
+    status: "actif",
+    lastContact: "2024-01-10",
+    revenue: "XFA 75,000",
+    notes: "Fournisseur principal pour les équipements informatiques.",
+    paymentTerms: "15 jours",
+    contactPerson: "Marie Ngo",
+    taxNumber: "TAX654321",
+    registrationNumber: "RC345678",
+    industry: "Technologie",
+    avatar: "https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&w=32&h=32&dpr=2",
+  },
   // Ajoutez d'autres tiers avec les mêmes attributs...
 ];
 
@@ -189,7 +233,7 @@ export function TiersTable() {
                       <div>
                         <div className="font-medium">{tier.name}</div>
                         <div className="text-sm text-muted-foreground">
-                          ID: {tier.id}
+                          ID: {tier.taxNumber}
                         </div>
                       </div>
                     </div>
@@ -234,7 +278,7 @@ export function TiersTable() {
                           onClick={() => handleDelete(tier)}
                         >
                           <Trash2 className="mr-2 h-4 w-4" />
-                          Supprimer
+                          desactiver
                         </DropdownMenuItem>
                       </DropdownMenuContent>
                     </DropdownMenu>
@@ -514,9 +558,9 @@ export function TiersTable() {
       <Dialog open={isDeleteOpen} onOpenChange={setIsDeleteOpen}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Confirmer la suppression</DialogTitle>
+            <DialogTitle>Confirmer la desactivation</DialogTitle>
             <DialogDescription>
-              Êtes-vous sûr de vouloir supprimer {selectedTier?.name} ? Cette action est irréversible.
+              Êtes-vous sûr de vouloir desactiver {selectedTier?.name} ? Cette action est irréversible.
             </DialogDescription>
           </DialogHeader>
           <DialogFooter>
