@@ -1,6 +1,6 @@
 import { DashboardHeader } from '@/components/dashboard/header';
 import { DashboardStats } from '@/components/dashboard/stats';
-import { DashboardCharts } from '@/components/dashboard/charts';
+import {  DashboardChartsFallback } from '@/components/dashboard/charts';
 import { RecentActivity } from '@/components/dashboard/recent-activity';
 import { QuickActions } from '@/components/dashboard/quick-actions';
 
@@ -12,7 +12,8 @@ export default function DashboardPage() {
         <DashboardStats />
       </div>
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
-        <DashboardCharts />
+        <DashboardChartsFallback />
+
         <div className="col-span-3 space-y-4">
           <RecentActivity />
           <QuickActions />
