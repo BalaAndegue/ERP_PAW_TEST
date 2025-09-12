@@ -32,7 +32,7 @@ export function DashboardChartsFallback() {
     const maxValue = Math.max(...lineData.map(item => item.value));
     const chartHeight = 280;
     const chartWidth = 500;
-    const padding = 40;
+    const padding = 10;
     
     return (
       <svg width="100%" height="100%" viewBox={`0 0 ${chartWidth} ${chartHeight}`}>
@@ -114,7 +114,7 @@ export function DashboardChartsFallback() {
     const maxValue = Math.max(...barData.map(item => item.value));
     const chartHeight = 280;
     const chartWidth = 500;
-    const padding = 60;
+    const padding = 10;
     const barWidth = 60;
     
     return (
