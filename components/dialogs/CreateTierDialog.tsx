@@ -31,7 +31,7 @@ export function CreateTierDialog() {
     <Dialog open={open} onOpenChange={setOpen}>
       <button 
         onClick={() => setOpen(true)}
-        className="inline-flex items-center justify-center px-4 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors"
+        className="inline-flex items-center justify-center px-4 py-2 bg-green-600 text-primary-foreground rounded-md hover:bg-primary/90 transition-colors"
       >
         <Plus className="mr-2 h-4 w-4" />
         Nouveau Tiers
@@ -63,7 +63,7 @@ export function CreateTierDialog() {
             <CommercialForm onSuccess={handleSuccess} />
           </TabsContent>
         </Tabs>
-      </DialogContent>
+      </DialogContent> 
     </Dialog>
   );
 }

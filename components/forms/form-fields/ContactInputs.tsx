@@ -1,8 +1,13 @@
 // components/tiers/form-fields/ContactInputs.tsx
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Select } from "@/components/ui/select";
-import { SelectContent, SelectItem, SelectTrigger, SelectValue } from "@radix-ui/react-select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 import { useForm } from 'react-hook-form';
 
 type ContactInputsProps = {
@@ -13,13 +18,7 @@ type ContactInputsProps = {
 export function ContactInputs({ register, errors }: ContactInputsProps) {
 
 
- const {  handleSubmit,setValue,  } = useForm({
-    defaultValues: {
-      segment: "",
-      plafondCredit: "",
-      canalAquisition: "",
-    }
-  });
+ const {  watch,setValue,  } = useForm();
 
 
   return (
@@ -60,25 +59,32 @@ export function ContactInputs({ register, errors }: ContactInputsProps) {
           />
         </div>
 
-        <div className="space-y-2">
-          <Label htmlFor="canalPrefere">Canal préféré</Label>
-          <Select
-            id="canalPrefere"
-            options={[
-              { value: "email", label: "Email" },
-              { value: "phone", label: "Téléphone" },
-              { value: "courrier", label: "Courrier" },
-              { value: "in_person", label: "En personne" },
-            ]}
-            {...register("canalPrefere")}
-          />
-        </div>
+       
         <div className="space-y-2">
           <Label htmlFor="canalprefere">Canal Prefere</Label>
           <Select 
-          value='{watch("segment")}'
+          value={watch("segment")}
           onValueChange={(value) => setValue("segment", value)}
           {...register("segment")}
+          >
+            <SelectTrigger>
+              <SelectValue placeholder="Sélectionner un segment" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="email">Email</SelectItem>
+              <SelectItem value="phone">Téléphone</SelectItem>
+              <SelectItem value="courrier">Courrier</SelectItem>
+              <SelectItem value="in_person">En personne</SelectItem>
+            </SelectContent>
+          </Select>
+          {errors.segment && <span className="text-sm text-red-500">{errors.segment.message}</span>}
+      </div>
+        <div className="space-y-2">
+          <Label htmlFor="typeEntreprise">Type Entreprise</Label>
+          <Select 
+          value={watch("typeEntreprise")}
+          onValueChange={(value) => setValue("typeEntreprise", value)}
+          {...register("typeEntreprise")}
           >
             <SelectTrigger>
               <SelectValue placeholder="Sélectionner un segment" />

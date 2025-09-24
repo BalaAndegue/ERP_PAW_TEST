@@ -1,7 +1,14 @@
 // components/tiers/form-fields/AddressInputs.tsx
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Select } from "@/components/ui/select";
+import { useForm } from "react-hook-form";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 
 type AddressInputsProps = {
   register: any;
@@ -10,9 +17,10 @@ type AddressInputsProps = {
 };
 
 export function AddressInputs({ register, errors, control }: AddressInputsProps) {
+  const { watch, setValue } = useForm();
   return (
     <div className="space-y-6">
-      <h3 className="text-lg font-medium">Informations d'adresse</h3>
+      <h3 className="text-lg font-medium">Informations d'adresses</h3>
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="space-y-2">
@@ -53,19 +61,24 @@ export function AddressInputs({ register, errors, control }: AddressInputsProps)
           />
         </div>
 
+        
         <div className="space-y-2">
-          <Label htmlFor="country">Pays</Label>
+          <Label htmlFor="country">pays</Label>
           <Select
-            id="country"
-            options={[
-              { value: "fr", label: "France" },
-              { value: "be", label: "Belgique" },
-              { value: "ch", label: "Suisse" },
-              { value: "lu", label: "Luxembourg" },
-            ]}
-            {...register("country")}
-            defaultValue="fr"
-          />
+            onValueChange={(value) => setValue("pays", value)}
+            defaultValue="Cameroun"
+          >
+            <SelectTrigger>
+              <SelectValue placeholder="entrer votre pays" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="cmr">Cameroun</SelectItem>
+              <SelectItem value="cg">Congo</SelectItem>
+              <SelectItem value="tc">Tchad</SelectItem>
+              <SelectItem value="gb">Gabon</SelectItem>
+              <SelectItem value="ci">Cote d'ivoire</SelectItem>
+            </SelectContent>
+          </Select>
         </div>
       </div>
     </div>

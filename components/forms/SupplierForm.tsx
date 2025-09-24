@@ -67,17 +67,24 @@ export function SupplierForm({ onSuccess }: { onSuccess?: () => void }) {
           />
         </div>
 
-        <div className="space-y-2 md:col-span-2">
-          <Label>Produits principaux</Label>
-          <MultiSelect
-            options={[
-              { value: "electronique", label: "Électronique" },
-              { value: "materiel", label: "Matériel" },
-              { value: "logiciel", label: "Logiciel" },
-            ]}
-            value={watch("produitsPrincipaux") || []}
-            onChange={(values) => setValue("produitsPrincipaux", values)}
-          />
+        
+
+
+        <div className="space-y-2">
+          <Label htmlFor="produitsPrincipaux">Produits principaux</Label>
+          <Select
+            value={watch("produitsPrincipaux")}
+            onValueChange={(value) => setValue("produitsPrincipaux", value)}
+          >
+            <SelectTrigger>
+              <SelectValue placeholder="Sélectionner un produit" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="electronique">Électronique</SelectItem>
+              <SelectItem value="materiel">Matériel</SelectItem>
+              <SelectItem value="logiciel">Logiciel</SelectItem>
+            </SelectContent>
+          </Select>
         </div>
 
         <div className="space-y-2">
